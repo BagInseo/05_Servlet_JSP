@@ -1,0 +1,80 @@
+package edu.kh.jsp.controller;
+
+import java.io.IOException;
+
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+@WebServlet("/pizza/order")
+public class PizzaOrderServlet extends HttpServlet{
+	//GET 방식 요청 : form(GET), a, JS(location.href), 주소창에 직접 입력
+	//POST 방식 : form(POST), JS(sjax/REST API)
+	
+
+	//a 태그 요청 == GET 방식
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		// JSP로 요청 위임되는 HttpServletRequest 객체에
+		// 임의의 값을 추가하기!!
+		String myName="박인서";
+		
+		req.setAttribute("myName" , myName);//Attribute(속성)==변수(필드)
+		
+		
+		//pizza_order.jsp가 응답 화면을 대신 만들어 출력할 수 있도록
+		// HttpServletRest, HttpServletResponse를 요청 위임
+		
+		// '/'(webapp폴더) 부터 piza_order.jsp까지의 파일 경로 작성
+		String  path ="/WEB-INF/views/pizza_order.jsp";
+		
+		//ResquestDispatcher 갹체 생성
+		RequestDispatcher dispatcher= req.getRequestDispatcher(path);
+		
+		dispatcher.forward(req, resp);
+	
+	}
+	
+	
+	/*요청 주소가 같아도 method가 GET/POST로 다른 경우*/
+	/*따로 퍼리하는 코드를 작성할 수 있다 */
+	// 피자 주문 페이지 요청 처리(POST방식)
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		String pizza = req.getParameter("pizza"); // 치즈 피자-8000
+		String size = req.getParameter("size");  // R || L
+		int amount = Integer.parseInt(req.getParameter("amount")); // 1  (개)
+		
+		String[] arr = pizza.split("-");  // "-" 구분자로 쪼개어 String[] 반환
+		// arr == {"치즈 피자", "8000"}
+		
+		String pizzaName = arr[0]; // "치즈 피자"
+		int price = Integer.parseInt(arr[1]); // 8000
+		
+		/* L 사이즈인 경우 4000원 추가 */
+		if(size.equals("L"))	price += 4000;
+		
+		
+		/* 수량 만큼 price에 곱하기 */
+		price *= amount;
+		
+		//pizzaName, price를 요청 위임항 JSP로 넘겨주기 위해
+		// HttpServletRequest 객체에 속성으로 추가
+		req.setAttribute("pizzaName", pizzaName);
+		req.setAttribute("price", price);
+		
+		//요청 위임할 JSP 경로 저장
+		String path="/WEB-INF/views/order_result.jsp";
+		
+		//요청 발송자를 이요해서 jsp지정 + 요청 위임
+		RequestDispatcher dispatcher=req.getRequestDispatcher(path);
+		dispatcher.forward(req, resp);
+		
+		
+	}
+}

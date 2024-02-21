@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servlet 복습 프로젝트</title>
+</head>
+<body>
+    <h1>박인서의 Servlet 복습 프로젝트</h1>
+    <!-- 피자 주문 요청 -> 영수증 응답  -->
+
+
+    <form action="/test" method="get">
+        <h3>피자 주문하기</h3>
+
+         <h4>피자 종류 고르기 </h4> 
+         
+         <div>
+            <input type="radio" name="pizza" value="콤비네이션"> 콤비네이션 피자(+10000)
+            <input type="radio" name="pizza" value="불고기"> 불고기 피자(+11000)
+            <input type="radio" name="pizza" value="치즈"> 치즈 피자(+10000)
+            <input type="radio" name="pizza" value="포테이토"> 포테이토 피자(+15000)
+            <input type="radio" name="pizza" value="고구마"> 고구마 피자(+16000)
+         </div>
+
+         <hr>
+
+         <h4>피자 사이즈</h4>
+         <div>
+            <input type="radio" name="size" value="small">S
+            <input type="radio" name="size" value="midium">M(+2000)
+            <input type="radio" name="size" value="Large">L(+4000)
+         </div>
+
+         <hr>
+
+         <h4>추가 옵션</h4>
+         <div>
+            <input type="checkbox" name="opt" value="small">S
+            <input type="checkbox" name="opt" value="midium">M(+2000)
+            <input type="checkbox" name="opt" value="Large">L(+4000)
+         </div>
+
+
+
+    </form>
+</body>
+</html>
