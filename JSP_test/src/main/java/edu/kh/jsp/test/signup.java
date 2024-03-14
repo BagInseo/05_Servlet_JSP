@@ -66,8 +66,8 @@ public class signup extends HttpServlet{
 		req.getRequestDispatcher(path).forward(req, resp);
 		
 	
-		String path="/WEB-INF/views/signup_test_result.jsp";
-		RequestDispatcher dispatcher=req.getRequestDispatcher(path);
-		dispatcher.forward(req, resp);
+//		String path="/WEB-INF/views/signup_test_result.jsp";
+//		RequestDispatcher dispatcher=req.getRequestDispatcher(path);
+//		dispatcher.forward(req, resp);
 	}
 }

@@ -20,7 +20,11 @@
 	 --%>
 	<%
 	//전달 받은 파라미터 얻어오기
-	
+	String inputId = request.getParameter("inputId");
+	String inputName = request.getParameter("inputName");
+	String inputPw = request.getParameter("inputPw");
+	String inputPwCheck = request.getParameter("inputPwCheck");
+	String inputAge = request.getParameter("inputAge");
 	%>
 	
 	<%
